@@ -621,6 +621,9 @@ class CachedContextManager:
         ), f"{prefix}_buffer must be set before"
 
         if self.is_cache_residual():
+            if hidden_states.device != hidden_states_prev.device:
+                hidden_states_prev = hidden_states_prev.to(hidden_states.device)
+                
             hidden_states = hidden_states_prev + hidden_states
         else:
             # If cache is not residual, we use the hidden states directly
