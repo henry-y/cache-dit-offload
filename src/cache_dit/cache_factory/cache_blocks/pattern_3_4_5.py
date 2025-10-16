@@ -39,10 +39,13 @@ class CachedBlocks_Pattern_3_4_5(CachedBlocks_Pattern_Base):
                 *args,
                 **kwargs,
             )
-            hidden_states, new_encoder_hidden_states = (
-                self._process_block_outputs(hidden_states)
-            )
+            # hidden_states, new_encoder_hidden_states = (
+            #     self._process_block_outputs(hidden_states)
+            # )
 
+        if not isinstance(hidden_states, torch.Tensor):
+            hidden_states = hidden_states.get_result()
+            
         return hidden_states, new_encoder_hidden_states
 
     @torch.compiler.disable
@@ -251,9 +254,13 @@ class CachedBlocks_Pattern_3_4_5(CachedBlocks_Pattern_Base):
                 *args,
                 **kwargs,
             )
-            hidden_states, new_encoder_hidden_states = (
-                self._process_block_outputs(hidden_states)
-            )
+            # hidden_states, new_encoder_hidden_states = (
+            #     self._process_block_outputs(hidden_states)
+            # )
+
+        if not isinstance(hidden_states, torch.Tensor):
+            hidden_states = hidden_states.get_result()
+            
 
         return hidden_states, new_encoder_hidden_states
 
@@ -272,10 +279,13 @@ class CachedBlocks_Pattern_3_4_5(CachedBlocks_Pattern_Base):
                 **kwargs,
             )
 
-            hidden_states, new_encoder_hidden_states = (
-                self._process_block_outputs(hidden_states)
-            )
+            # hidden_states, new_encoder_hidden_states = (
+            #     self._process_block_outputs(hidden_states)
+            # )
 
+        if not isinstance(hidden_states, torch.Tensor):
+            hidden_states = hidden_states.get_result()
+            
         # compute hidden_states residual
         hidden_states = hidden_states.contiguous()
         hidden_states_residual = hidden_states - original_hidden_states.to(
@@ -305,9 +315,12 @@ class CachedBlocks_Pattern_3_4_5(CachedBlocks_Pattern_Base):
                 **kwargs,
             )
 
-            hidden_states, new_encoder_hidden_states = (
-                self._process_block_outputs(hidden_states)
-            )
+            # hidden_states, new_encoder_hidden_states = (
+            #     self._process_block_outputs(hidden_states)
+            # )
+
+        if not isinstance(hidden_states, torch.Tensor):
+            hidden_states = hidden_states.get_result()
 
         return hidden_states, new_encoder_hidden_states
 
