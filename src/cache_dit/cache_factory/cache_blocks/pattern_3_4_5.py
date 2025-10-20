@@ -498,12 +498,15 @@ class PrunedBlocks_Pattern_3_4_5(CachedBlocks_Pattern_3_4_5):
                 *args,
                 **kwargs,
             )
-            hidden_states, new_encoder_hidden_states = (
-                self._process_block_outputs(
-                    hidden_states, new_encoder_hidden_states
-                )
-            )
+            # hidden_states, new_encoder_hidden_states = (
+            #     self._process_block_outputs(
+            #         hidden_states, new_encoder_hidden_states
+            #     )
+            # )
             if not self._skip_prune(block_id):
+                if not isinstance(hidden_states, torch.Tensor):
+                    hidden_states = hidden_states.get_result()
+                    
                 hidden_states = hidden_states.contiguous()
                 hidden_states_residual = hidden_states - original_hidden_states
 
